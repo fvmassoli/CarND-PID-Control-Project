@@ -1,5 +1,6 @@
 #ifndef PID_H
 #define PID_H
+#include <vector>
 
 class PID {
 public:
@@ -16,6 +17,17 @@ public:
   double Kp;
   double Ki;
   double Kd;
+
+  /**
+  * variables to set twiddle
+  */
+  std::vector<double> dp;
+  int step; 
+  int n_settle_steps;
+  int n_eval_steps;
+  double total_error; 
+  double best_error;
+  bool twiddle;
 
   /*
   * Constructor
