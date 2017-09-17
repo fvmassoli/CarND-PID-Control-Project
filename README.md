@@ -1,7 +1,26 @@
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
----
+## Project Description
+The goal of this project is to implement an algorithm that is able to drive a simulated car on a track.
+
+In order to do that I implemented a PID controller that is based on the three main components: the P, I and D.
+
+The input data comes from a simulator that gives to the algorithm the cte on which the algorithm evaluates the steering angle of the car.
+
+## Reflection
+A video of the implemented PID can be found here....
+
+The algorightm takes the CTE as input. The CTE simply quantify the distance (in this case Euclidean) of the car from the ideal trajectory. Based on it's value the algorithm evaluates the steering angle.
+
+As said above, the PID is made of three components:
+* "P" is the proportional term. This term has the major direct impact on the steering angle. It sets a steering angle that is directly proportional to the CTE. Althought this term can help to approach very quickly the ideal trajectory since it can give very high sterring angle at the same time it can cause oscillations with very large amplitude. In particular a large value for this value will have the effect of causing very large oscillation while a too small value can cause the car to go out of the road in the curves since it will react with too small steering angle.
+* "I" is the integral term. It takes into account the integral of CTE over the past time and it is used to reduce systematic bias. 
+* "D" is the differential term. In order to mitigate the effect of the "P" term, the differential term where the steering angle is proportional to the first derivative of the CTE. This term gives a much smoother approach to the ideal trajectory since the amplitude of the steering angle will depend of the "velocity" at which the CTE will change. 
+
+### Results
+Before to reach the final results I tried different implementations. In particular I also tried to use Twiddle but finally I have found very nice results even w/o using it. For that reason I commented that part od the code. At the beginning I tuned the hyperparameters by hand and then after few laps the algorithm set proper values for them and the car appeared to be quite stable (video). The can never crashed or exited the track.
+The inital value for the paramters has been set to 0.2, 3.0, 0.004 for P, D and I respectively.
 
 ## Dependencies
 
